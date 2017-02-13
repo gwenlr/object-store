@@ -14,6 +14,11 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
+bootRepackage {
+    mainClass="com.triel.bo.ObjectStoreApplication"
+    executable=true
+}
+
 jar {
 	baseName = 'object-store'
 	version = '0.0.1-SNAPSHOT'
