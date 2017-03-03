@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class IndustrialObject {
 
     @Id
-    @Column(unique = true)
     private String name;
 
     @Column
@@ -15,8 +14,6 @@ public class IndustrialObject {
 
     @Column
     private String state;
-
-    //private byte[][] images;
 
 
     public IndustrialObject() {

@@ -1,6 +1,6 @@
 package com.triel.bo.service;
 
-public class IndustrialObjectUpdate {
+class IndustrialObjectUpdate {
 
     private String description;
 

@@ -1,6 +1,6 @@
 package com.triel.bo.service;
 
-public class IndustrialObjectCreateRead {
+class IndustrialObjectCreateRead {
 
     private String name;
     private String description;

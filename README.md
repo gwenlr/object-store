@@ -8,14 +8,23 @@ The servlet server used is Jetty
 
 All structures are exchanged in JSON format.
 
-###IndustrialObjectCreateRead
+### IndustrialObjectCreateRead
 * name: String representing the name of the object, shall not be null nor empty. It is unique in the store.
 * description: String describing the object. Cannot be null;
 * state: String representing the state of the object, shall not be null.
 
-###IndustrialObjectUpdate
+### IndustrialObjectUpdate
 * description: String describing the object. Cannot be null;
 * state: String representing the state of the object, shall not be null.
+
+### IndustrialImageCreated
+* objectName: String containing the name of the object;
+* imageUuid: String containing the UUID of the created image;
+
+### IndustrialImageMetadata
+* uuid: String containing the UUID of the created image;
+* contentType: String containing the MediaType of the image
+
 
 
 ##Operations
@@ -34,7 +43,7 @@ Returns:
 ### Create a new object 
 Request: POST /objects
 Returns: 
-* OK / IndustrialObjectCreateRead
+* CREATED / IndustrialObjectCreateRead
 * NO_CONTENT
 
 ### Replace an object 
@@ -46,11 +55,32 @@ Returns:
 
 ### Delete an object
 Request: DELETE /objects/{name}
+Headers:
+    Content-Type: the type of the image
 Returns: 
 * OK / IndustrialObjectCreateRead
 * NOT_FOUND
 
+### Add an image to an object
+Request POST /objects/{name}/images
+Returns: 
+* CREATED / IndustrialImageCreated
+* NOT_FOUND
+* UNSUPPORTED_MEDIA_TYPE
+
+### Get all image metadata of an object
+Request GET /objects/{name}/images
+Returns: 
+* OK / List of IndustrialImageMetadata
+
+### Get an image
+Request GET /images/{uuid}
+Returns:
+* OK / content-type / byte[] 
+* NOT_FOUND
 
 
-
-
+### Delete an image
+Request DELETE /images/{uuid}
+* OK 
+* NOT_FOUND
